@@ -7,7 +7,13 @@ app.set("view engine", "ejs");
 var camper = [
 		{name:"Salmon Creek",image:"https://farm4.staticflickr.com/3270/2617191414_c5d8a25a94.jpg"},
 		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"},
-		{name:"Moint Pull Hut",image:"https://farm4.staticflickr.com/3273/2602356334_20fbb23543.jpg"}
+		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"},
+		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"},
+		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"},
+		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"},
+		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"},
+		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"},
+		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"}
 	];
 app.get("/",function(req,res){
 	res.render("landing.ejs");
