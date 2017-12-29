@@ -1,0 +1,14 @@
+<% include partials/header %>
+<% include partials/navbar %>
+<div class="container">
+	<header class="jumbotron">
+		<div class="container">
+			<h1><%= campgrounds.name %></h1>
+		</div>
+	</header>
+	<img src="<%=campgrounds.image%>">
+	<p><%=campgrounds.description%></p>
+</div>
+
+
+<% include partials/footer %>
