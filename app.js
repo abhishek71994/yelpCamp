@@ -2,17 +2,14 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var CampGround = require("./models/campground");
+var seedDB = require("./seeds")
+
+seedDB();
 //connect to mongoose
 mongoose.connect("mongodb://localhost/yelpcamp");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
-//schema
-var campgroundSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String
-});
-var CampGround = mongoose.model("Campground",campgroundSchema);
 
 // CampGround.create({
 // 	name:"Salmon Creek",
