@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var CampGround = require('./models/campground');
+var Comment = require('./models/comment');
 
 var data = [
 	{
@@ -37,21 +38,21 @@ function seedDB(){
 					//add a few comments
 					Comment.create(
 						{
-							text:"this place is great but no wifi!"
-							authon:"Holmes"
+							text:"this place is great but no wifi!",
+							author:"Holmes"
 						},function(err,comment){
 							if(err){
 								console.log(err)
 							}
 							else{
-								camp.comment.push(comment);
-								camp.save();
+								camps.comments.push(comment);
+								camps.save();
 								console.log("created new comments");
 							}
 							
-						})
+						});
 				}
-			})
+			});
 		});
 		
 		
