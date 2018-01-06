@@ -11,23 +11,6 @@ mongoose.connect("mongodb://localhost/yelpcamp");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 
-// CampGround.create({
-// 	name:"Salmon Creek",
-// 	image:"https://farm4.staticflickr.com/3270/2617191414_c5d8a25a94.jpg",
-// 	description:"A super nice place to hang out with the family!"
-// },function(err,campground){
-// 	if(err){
-// 		console.log(err);
-// 	}
-// 	else{
-// 		console.log("New campground made");
-// 		console.log(campground);
-// 	}
-// });
-// var camper = [
-// 		{name:"Salmon Creek",image:"https://farm4.staticflickr.com/3270/2617191414_c5d8a25a94.jpg"},
-// 		{name:"Granite Hill",image:"https://farm3.staticflickr.com/2535/3823437635_c712decf64.jpg"}
-// 	];
 app.get("/",function(req,res){
 	res.render("landing.ejs");
 });
@@ -67,7 +50,7 @@ app.get("/campgrounds/new",function(req,res){
 //a request to show information
 app.get("/campgrounds/:id",function(req,res){
 	//find the campground with provided ID
-	CampGround.findById(req.params.id,function(err,foundCamp){
+	CampGround.findById(req.params.id).populate("comments").exec(function(err,foundCamp){
 		if (err) {
 			console.log(err);
 		}
