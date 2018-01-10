@@ -21,7 +21,7 @@ app.get("/campgrounds",function( req, res ){
 			console.log(err);
 		}
 		else{
-			res.render("index.ejs",{campgrounds:camper});
+			res.render("campgrounds/index",{campgrounds:camper});
 		}
 	});
 });
@@ -45,7 +45,7 @@ app.post("/campgrounds",function( req,res ){
 });
 //show form for new creations
 app.get("/campgrounds/new",function(req,res){
-	res.render("new.ejs");
+	res.render("campgrounds/new");
 });
 //a request to show information
 app.get("/campgrounds/:id",function(req,res){
@@ -56,12 +56,27 @@ app.get("/campgrounds/:id",function(req,res){
 		}
 		else{
 			// show the found information
-			res.render("show.ejs",{campgrounds:foundCamp});
+			res.render("campgrounds/show.ejs",{campgrounds:foundCamp});
 		}
 	});
 	
 });
 
+/*---------------
+COMMENT ROUTES
+---------------*/
+app.get("/campgrounds/:id/comments/new",function(req,res){
+	//find campgrounds by id
+	CampGround.findById(req.params.id,function(err,camps){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render("comments/new",{campground:camps});
+		}
+	})
+	
+});
 app.listen(3001,'localhost',function(){
 	console.log("The server is running!");
 });
