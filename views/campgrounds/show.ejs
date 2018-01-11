@@ -8,6 +8,9 @@
 	</header>
 	<img src="<%=campgrounds.image%>">
 	<p><%=campgrounds.description%></p>
+	<p>
+		<a class="btn btn-success" href="/campgrounds/<%= campgrounds._id%>/comments/new">Add new comments</a>
+	</p>
 	<% campgrounds.comments.forEach(function(comment){ %>
 		<p><strong><%= comment.author %></strong> - <%= comment.text %></p>
 	<% }); %>

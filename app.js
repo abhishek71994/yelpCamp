@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var CampGround = require("./models/campground");
 var seedDB = require("./seeds")
+var Comment= require("./models/comment");
 
 seedDB();
 //connect to mongoose
@@ -74,8 +75,34 @@ app.get("/campgrounds/:id/comments/new",function(req,res){
 		else{
 			res.render("comments/new",{campground:camps});
 		}
-	})
+	});
 	
+});
+app.post("/campgrounds/:id/comments",function(req,res){
+	//look up the campground using id
+	CampGround.findById(req.params.id).populate("comments").exec(function(err,camps){
+		if(err){
+			console.log(err);
+			res.redirect("/campgrounds");
+		}
+		else{
+			Comment.create(req.body.comment,function(err,comment){
+				if(err){
+					console.log(err);
+				}
+				else{
+					console.log(comment);
+					camps.comments.push(comment);//important ting
+					camps.save();
+					res.redirect("/campgrounds/" + camps._id);
+					console.log(camps);
+				}
+			})
+		}
+	})
+	//create new comment
+	//connect new comment to campground
+	//redirect to somewhere
 });
 app.listen(3001,'localhost',function(){
 	console.log("The server is running!");
