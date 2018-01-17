@@ -80,7 +80,7 @@ app.get("/campgrounds/:id/comments/new",function(req,res){
 });
 app.post("/campgrounds/:id/comments",function(req,res){
 	//look up the campground using id
-	CampGround.findById(req.params.id).populate("comments").exec(function(err,camps){
+	CampGround.findById(req.params.id,function(err,camps){
 		if(err){
 			console.log(err);
 			res.redirect("/campgrounds");
@@ -92,10 +92,9 @@ app.post("/campgrounds/:id/comments",function(req,res){
 				}
 				else{
 					console.log(comment);
-					camps.comments.push(comment);//important ting
+					camps.comments.push(comment._id);//important ting
 					camps.save();
 					res.redirect("/campgrounds/" + camps._id);
-					console.log(camps);
 				}
 			})
 		}

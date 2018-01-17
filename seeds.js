@@ -45,7 +45,7 @@ function seedDB(){
 								console.log(err)
 							}
 							else{
-								camps.comments.push(comment);
+								camps.comments.push(comment._id);
 								camps.save();
 								console.log("created new comments");
 							}
